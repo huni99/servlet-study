@@ -1,25 +1,25 @@
 package com.gn.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 /**
- * Servlet implementation class SaveNickServlet
+ * Servlet implementation class RemoveSessionServlet
  */
-@WebServlet("/saveNick")
-public class SaveNickServlet extends HttpServlet {
+@WebServlet("/removeSession")
+public class RemoveSessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SaveNickServlet() {
+    public RemoveSessionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +28,25 @@ public class SaveNickServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cookie cookie = new Cookie("nick", request.getParameter("nick"));
-		cookie.setMaxAge(60 * 60);
-		response.addCookie(cookie);
-		response.sendRedirect("/practiceCookie");
+		//1. 세션 객체화
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			//(1) 특정 값만 삭제
+			session.removeAttribute("member_id");
+			
+			//(2) 전체 세션 종료
+			session.invalidate();
+			
+		}
+		
+		response.sendRedirect("/");
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
