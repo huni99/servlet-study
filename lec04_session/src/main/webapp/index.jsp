@@ -26,7 +26,7 @@
 			<a href="/changePage">방문 횟수 추적하기</a>
 		</li>
 		<li>
-			<a href="productList"> 상품 목록 페이지</a>
+			<a href="/productList"> 상품 목록 페이지</a>
 		</li>
 	</ul>
 	<h2> 현재 쿠키 값 확인</h2>
