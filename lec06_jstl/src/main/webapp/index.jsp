@@ -145,9 +145,55 @@
 	<p>${math lt 80 and eng ge 90 }</p>
 
 	
+	<h1>5. JSTL Core Library</h1>
+	<h2>(1) 변수 선언</h2>
+	<!-- c:set 사용  
+		1. 자료형 선언하지 않음
+		2. 초기값 반드시 작성
+		3. c:set으로 지정한 값 스크립틀릿에서 꺼내 쓸 수 없음
+		스크립틀릿에서 setting한 값은 jstl에서 꺼내 쓸 수 있음
+	-->
 	
+	<c:set var = "num3" value="10" scope="page"/>
+	<c:set var = "num4" value="20"/>
+	<c:set var="plus" value="${num3+num4 }"/>
 	
+	<h2>(2) 변수 출력</h2>
+	<!-- c:out  -->
+	<c:set var="result" value="<b>안녕하세요</b>"/>
+	<c:out value ="${result}"/>
+	<c:out value = "${result}" escapeXml="false"/>
 	
+	<h2>(3) 조건문 : if</h2>
+	<c:if test="${num3 le num4}">
+		<p>num3가 num4 보다 작거나 같네요</p>
+	
+	</c:if>
+	
+	<h2> (4) 조건문 : choose</h2>
+	<c:choose>
+		<c:when test="${num3 gt 20 }">
+			<p> num3이 20보다 큽니까?</p>
+		</c:when>
+		<c:when test="${num3 ge 10 }">
+			<p> num3이 10보다 크거나 같고 20보다 작거나 같습니까?</p>
+		</c:when>
+		<c:otherwise>
+		<p> num3이 10보다 작습니까?</p>
+		</c:otherwise>
+	</c:choose>
+	
+	<h2> (5) 반복문 : forEach</h2>
+	<!-- 기본 for문 처럼 사용하기 -->
+	<c:forEach var="i" begin="1" end="10" step="2">
+		<p>반복 숫자 : ${i}</p>
+	</c:forEach>
+	
+	<h1>6. 사이트 테마 설정</h1>
+	<form method="post" action="/setTheme">
+    <button type="submit" name="theme" value="dark">다크모드</button>
+    <button type="submit" name="theme" value="light">라이트모드</button>
+	</form>
 	
 </body>
 </html>
