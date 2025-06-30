@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.gn.dto.Guest;
@@ -32,11 +33,13 @@ public class InsertAjaxServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String text = request.getParameter("text");
-		System.out.println(name);
 		Guest guest = new Guest(name,text);
 		
 		JSONObject obj = new JSONObject();
-		obj.put("guest", guest);
+		
+		obj.put("name",guest.getName());
+		obj.put("text",guest.getText());
+		obj.put("time",guest.getTime());
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);
 		

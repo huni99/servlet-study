@@ -32,9 +32,9 @@
 				dataType : "json",
 				success: function(data){
 					console.log(data);
-					$("#guest_div").append('<p> name :'+ data.guest.getName()+"</p>");
-					$("#guest_div").append('<p> message :'+ data.guest.getText()+"</p>");
-					$("#guest_div").append('<p> date :'+ data.guest.getTime()+"</p>");
+					$("#guest_div").append('<p> name :'+ data.name+"</p>");
+					$("#guest_div").append('<p> message :'+ data.text+"</p>");
+					$("#guest_div").append('<p> date :'+ data.time+"</p>");
 					
 				},
 				error: function(){
