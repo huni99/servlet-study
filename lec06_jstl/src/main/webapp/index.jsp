@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ page import="com.gn.dto.Person" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -202,6 +206,7 @@
 	</c:forEach>
 	
 	</ul>
+	
 	<!-- varStatus 속성  -->
 	<c:forEach var = "num" begin= "0" end="5" varStatus="vs" step="2">
 		<p>
@@ -210,12 +215,59 @@
 		</p>		
 		
 	</c:forEach>
+	<script src = "<%= request.getContextPath() %>/resources/jquery-3.7.1.js">
+	</script>
+	
+	<a href="<%=request.getContextPath()%>/boardList">게시판</a>
+	
+	<script src="<c:url value='/resources/jquery-3.7.1.js'/>">
+	</script>
+	<a href="<c:url value='/boardList'/>">게시판</a>
+	<!-- 파라미터 사용하기  -->
+	<c:url var = "testUrl" value="/boardList">
+		<c:param name="nowPage" value="1"/>
+	</c:url>
+	<a href="${testUrl }">게시판</a>
 	
 	<h1>6. 사이트 테마 설정</h1>
 	<form method="post" action="/setTheme">
     <button type="submit" name="theme" value="dark">다크모드</button>
     <button type="submit" name="theme" value="light">라이트모드</button>
 	</form>
+	
+	
+	<h1>8. JSTL Formatting Library</h1>
+	<h2>(1) 숫자 정보 포맷팅</h2>
+	<!-- 포맷팅은 그 자체가 출력이다 -->
+	<fmt:formatNumber value="1234.567" type = "number"/><br>
+	<fmt:formatNumber value="0.875" type="percent"/><br>
+	
+	<fmt:formatNumber value="1234.5" pattern="#,###.##"/><br>
+	<fmt:formatNumber value="1234.5" pattern="00,000.00"/><br>
+	
+	<h2> (2) 날짜 정보 포맷팅</h2>
+	<c:set var="now" value="<%= new java.util.Date() %>"/>
+	<fmt:formatDate value="${now}" type= "date"/><br>
+	<fmt:formatDate value="${now}" pattern= "yy-MM-dd HH:mm:ss"/><br>
+	<fmt:formatDate value="${now}" type= "time"/><br>
+	<fmt:formatDate value="${now}" pattern="MM-dd일 hh:mm"/><br>
+	
+	<h1>9. JSTL Function Library</h1>
+	<c:set var="data" value="How Are You? I am fine"/>
+	<p><c:out value="${data}"/></p>
+	<p><c:out value="${fn:toUpperCase(data)}"/></p>
+	<p><c:out value="${fn:replace(data,'fine','apple'}"/></p> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </body>
 </html>
