@@ -235,6 +235,11 @@
     <button type="submit" name="theme" value="light">라이트모드</button>
 	</form>
 	
+	<h1>7. 별찍기 </h1>
+	<form action="/starServlet" method="post">
+	<input type ="number" name="count">
+	<button type="submit">출력하기</button>
+	</form>
 	
 	<h1>8. JSTL Formatting Library</h1>
 	<h2>(1) 숫자 정보 포맷팅</h2>
@@ -253,10 +258,10 @@
 	<fmt:formatDate value="${now}" pattern="MM-dd일 hh:mm"/><br>
 	
 	<h1>9. JSTL Function Library</h1>
-	<c:set var="data" value="How Are You? I am fine"/>
+ 	<c:set var="data" value="How Are You? I am fine"/>
 	<p><c:out value="${data}"/></p>
 	<p><c:out value="${fn:toUpperCase(data)}"/></p>
-	<p><c:out value="${fn:replace(data,'fine','apple'}"/></p> 
+	<p><c:out value="${fn:replace(data,'fine','apple')}"/></p>
 	
 	
 	
