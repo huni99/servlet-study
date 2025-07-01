@@ -5,13 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학생 목록</title>
 </head>
 <body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름 </th>
+				<th>나이</th>
+			
+			</tr>
+		
+		
+		</thead>
+		<tbody>
+			<c:forEach var="s" items="${mybatis}">
+			<tr onclick="location.href='/student/detail?no=${s.studentNo}'">	
+				<td>${s.studentNo }</td>
+				<td>${s.studentName }</td>
+				<td>${s.studentAge }</td>
+			</tr>	 
+			</c:forEach>		
+		</tbody>
+	
+	</table>
 
-<c:forEach var="student" items="${mybatis}">
-<p>${student.getStudentName() }</p>
-</c:forEach>
 
 </body>
 </html>
