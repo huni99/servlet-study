@@ -3,5 +3,6 @@ package com.gn.mapper;
 import com.gn.dto.Member;
 
 public interface MemberMapper {
-	public int insertMember();
+	 int insertMember(Member param);
+	 Member selectMember(Member param);
 }
